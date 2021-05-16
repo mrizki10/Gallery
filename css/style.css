@@ -1,0 +1,253 @@
+
+/* font */
+@font-face {
+	font-family: 'bebasNeue';
+	src : url(../fonts/BebasNeue-Bold) format('otf');
+}
+
+/* style utama */
+
+body {
+	font : 18px/36px 'bebasNeue','Arial Narow', arial, sans-serif;
+	background-color: #ddd; 
+}
+
+h1 {
+	font-size: 80px;
+	margin : 50px 0;
+	text-align: center;
+	text-shadow: 1px 5px 2px white ; /* text-shadow bayangan : kanan, bawah,blur, waran; */
+}
+
+.container{
+	width: 70%;
+	background-color: white;
+	margin: auto; 
+	padding: 20px;
+	box-shadow: 0 0 3px 5px rgba(2,3,1,1);
+	border-radius: 5px; /* ujungnya tumpul */
+
+}
+
+.gallery li {
+	width: 180px;
+	height: 120px;
+	border-radius: 100px;
+	/*overflow: hidden;*/
+	border: 5px solid #666;
+	float: left; /*untuk urutan gambarnya ke samping */
+	margin-right: ; /*utk spasi ke gambar kanannya */
+	margin-left: 80px;
+	margin-bottom: 5%;
+	position: relative;
+}
+
+.clear{
+	clear: both;
+}
+
+.gallery li span{
+	display: block;
+	width: 180px;
+	height: 120px;
+	background-color: rgba(200,200,200,.5); 
+	position: absolute;
+	top: 0;
+	text-align: center;
+	line-height: 120px;
+	color: green;
+	text-shadow: 1px 1px 1px yellow;
+	opacity:  0; /*span nya benar benar transparan */
+	transition: .3s;
+	transform: scale(0) rotate(0);
+
+}
+
+.gallery li a:hover span{ /*hover : utk menyorot */
+	opacity: 5;
+	transform: scale(1) rotate(360deg);/*keadaan akhir*/
+}
+
+.gallery li img,
+.gallery li span,
+.gallery li{
+	border-radius: 50%;
+}
+
+
+/*overlay*/
+
+.overlay {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	position:  fixed; 
+	top: 0;
+	left: 0;
+	 /*utk layar penuh*/
+	background: rgba(0,0,0,0); 
+	z-index : 9999;/* utk mengatur tumpukan elemen yg static*/
+	transition: 1s;
+	text-align: center;
+	padding: 100px 0 0 0;
+}
+
+.overlay:target{
+	width: auto;
+	height: auto;
+	bottom: 0;
+	right: 0;
+	background: rgba(0,0,0,.7);
+
+}
+
+.overlay img{
+	max-height: 50%; /* max-height = tinggi maksimal */
+	box-shadow: 5px 10px 9px rgba(0,0,0,.7);
+}
+
+.overlay :target img{
+	animation: zoomDanFade 5s;
+}
+
+.overlay .close{
+	position: absolute;
+	top: 65px;
+	left: 50%;
+	margin-left: -49px;
+	color: red;
+	text-decoration: none;
+	background-color: black;
+	border: 1px  solid white;
+	line-height: 15px;
+	padding: 5px;
+	
+}
+
+.overlay: target .close{
+	animation: zoomDanFade .10s forwards; /*g kedua delaynya*/
+}
+
+/* navigasi */
+
+.next, .prev{
+	width: 65px;
+	height: 85px;
+	background-image: url(../img/s.png);
+	position: absolute;
+	text-indent: -9999px;
+	top: 30%;
+	margin-left: 20px;
+	opacity: 1;
+
+}
+
+.prev {
+	background-image: url(../img/z.png);
+	margin-left: -80px;
+}
+
+.overlay : target .next{
+	animation: zoomDanFade .5s;
+}
+
+
+/* animasi */
+@keyFrames zoomDanFade{/*syntak animasi (@keyFrames) */
+	/*untuk menampilkan gambar dari kecil ke besar */
+	0%{
+		transform: scale(0);
+		opacity: 0;
+	}
+
+	100%{
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* animasi untuk slow kata x close dari atas transfaran ke bawah solid */
+@keyFrames slideSlow {
+	0%{
+		opacity: 0;
+		margin-top: -20px; /*naik dulu */
+	}
+	/* akhirnya */
+	100%{
+		opacity: 1;
+		margin-top: 0; /*normalnya*/
+	}
+}
+
+@keyFrames fade{
+	0%{
+		opacity: 0;
+
+	}
+
+	100%{
+		opacity: 1;
+	}
+}
+
+/* Desktop Version */
+@media (min-width: 992px) {
+
+.gallery li {
+	width: 180px;
+	height: 120px;
+	border-radius: 100px;
+	/*overflow: hidden;*/
+	border: 5px solid #666;
+	float: left; /*untuk urutan gambarnya ke samping */
+	margin-right: 2%; /*utk spasi ke gambar kanannya */
+	margin-left: 2.5%;
+	margin-bottom: 5%;
+	position: relative;
+}
+
+.gallery li img,
+.gallery li span,
+.gallery li{
+	border-radius: 50%;
+}
+
+/* animasi */
+@keyFrames zoomDanFade{/*syntak animasi (@keyFrames) */
+	/*untuk menampilkan gambar dari kecil ke besar */
+	0%{
+		transform: scale(0);
+		opacity: 0;
+	}
+
+	100%{
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* animasi untuk slow kata x close dari atas transfaran ke bawah solid */
+@keyFrames slideSlow {
+	0%{
+		opacity: 0;
+		margin-top: -20px; /*naik dulu */
+	}
+	/* akhirnya */
+	100%{
+		opacity: 1;
+		margin-top: 0; /*normalnya*/
+	}
+}
+
+@keyFrames fade{
+	0%{
+		opacity: 0;
+
+	}
+
+	100%{
+		opacity: 1;
+	}
+}
+
+}
